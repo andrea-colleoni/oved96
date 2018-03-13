@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-@ComponentScan(basePackages = { "it.oved96.controller" })
+@ComponentScan(basePackages = { "it.oved96.controller", "esercizio13marzo.controller" })
 @Configuration
 public class SpringMvcConfig extends WebMvcConfigurerAdapter{
 
