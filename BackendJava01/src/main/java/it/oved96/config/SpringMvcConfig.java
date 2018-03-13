@@ -1,8 +1,13 @@
 package it.oved96.config;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -28,6 +33,19 @@ public class SpringMvcConfig extends WebMvcConfigurerAdapter{
 		viewResolver.setPrefix("/WEB-INF/views/jsp/");
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
+	}
+	
+	@Bean
+	@Scope("singleton")
+	public EntityManagerFactory emFactory() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("BackendJava01");
+		return emf;
+	}
+	
+	@Bean
+	@Scope("prototype")
+	public EntityManager entityManager() {
+		return emFactory().createEntityManager();
 	}
 	
 }
