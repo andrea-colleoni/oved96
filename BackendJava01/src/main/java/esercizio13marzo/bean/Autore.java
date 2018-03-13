@@ -10,9 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+/**
+ * Il bean Autore rappresenta un autore ed è annotato con le
+ * annotazioni JPA per renderlo persistente su DB Oracle (vedi anche il file META-INF/persistence.xml)
+ * 
+ * @author andre
+ *
+ */
 @Entity
 public class Autore {
 
+	/**
+	 * ID è il campo chiave dell'entity. In oracle la generazione della chiave è ottenuta
+	 * interrogando una sequence che è definita utilizzando un SequenceGenerator di JPA
+	 */
 	@Id
 	@GeneratedValue(generator="autore_seq") 
     @SequenceGenerator(name="autore_seq",sequenceName="AUTORE_SEQ", allocationSize=5) 	

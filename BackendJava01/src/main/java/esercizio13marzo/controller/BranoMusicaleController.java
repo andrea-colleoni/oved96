@@ -14,6 +14,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import esercizio13marzo.bean.BranoMusicale;
 
+/**
+ * Il controller che genera l'API JS per l'interazione con il bean BranoMusicale
+ * mettendo a disposizione le operazioni di: lettura massiva, lettura
+ * singola, modifica, cancellazione, inserimento.
+ * Il controller espone l'API JS in stile architetturale REST.
+ * 
+ * @author andre
+ *
+ */
 @Controller
 @RequestMapping("/branomusicale")
 public class BranoMusicaleController {
@@ -21,11 +30,22 @@ public class BranoMusicaleController {
 	@Autowired
 	private EntityManager em;
 	
+	/**
+	 * Restituisce un singolo brano musicale, dato l'ID
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(path="{id}", method=RequestMethod.GET)
 	public @ResponseBody BranoMusicale byKey(@PathVariable("id") int id) {
 		return em.find(BranoMusicale.class, id);
 	}
 	
+	/**
+	 * Restituisce l'elenco di tutti i brani musicali presenti nel DB
+	 * 
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody List<BranoMusicale> all() {
 		List<BranoMusicale> l = em
@@ -34,6 +54,12 @@ public class BranoMusicaleController {
 		return l;
 	}
 	
+	/**
+	 * Inserisce un nuovo brano musicale nel DB
+	 * 
+	 * @param bm
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody boolean insert(@RequestBody BranoMusicale bm) {
 		em.getTransaction().begin();
@@ -42,6 +68,12 @@ public class BranoMusicaleController {
 		return true;
 	}
 	
+	/**
+	 * Elimina un brano musicale dal DB, se esiste
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(path="{id}", method=RequestMethod.DELETE)
 	public @ResponseBody boolean delete(@PathVariable("id") int id) {
 		BranoMusicale bm = byKey(id);
@@ -54,6 +86,12 @@ public class BranoMusicaleController {
 		return false;
 	}
 	
+	/**
+	 * Modifica un brano musicale già presente sul DB
+	 * 
+	 * @param bm
+	 * @return
+	 */
 	@RequestMapping(method=RequestMethod.PUT)
 	public @ResponseBody boolean update(@RequestBody BranoMusicale bm) {
 		if (byKey(bm.getId()) != null) {

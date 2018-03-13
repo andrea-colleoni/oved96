@@ -7,9 +7,20 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+/**
+ * Il bean BranoMusicale rappresenta un brano musicale ed è annotato con le
+ * annotazione JPA per renderlo persistente su DB Oracle (vedi anche il file META-INF/persistence.xml)
+ * 
+ * @author andre
+ *
+ */
 @Entity
 public class BranoMusicale {
 	
+	/**
+	 * ID è il campo chiave dell'entity. In oracle la generazione della chiave è ottenuta
+	 * interrogando una sequence che è definita utilizzando un SequenceGenerator di JPA
+	 */
 	@Id
 	@GeneratedValue(generator="brano_seq") 
     @SequenceGenerator(name="brano_seq",sequenceName="BRANO_SEQ", allocationSize=5) 
