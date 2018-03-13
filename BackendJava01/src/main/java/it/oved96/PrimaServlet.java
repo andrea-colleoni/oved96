@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/PrimaServlet")
+@WebServlet("/dfgdrgdty")
 public class PrimaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -18,11 +18,12 @@ public class PrimaServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("GET Served at: ").append(request.getContextPath());
+		response.getWriter().append("GET");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("POST Served at: ").append(request.getContextPath());
 	}
+
 
 }
